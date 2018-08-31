@@ -141,6 +141,15 @@ apt-get -y install locales console-common ntp openssh-server less vim
 echo \"root:raspberry\" | chpasswd
 sed -i -e 's/KERNEL\!=\"eth\*|/KERNEL\!=\"/' /lib/udev/rules.d/75-persistent-net-generator.rules
 rm -f /etc/udev/rules.d/70-persistent-net.rules
+cd /tmp
+wget https://learn.adafruit.com/pages/6577/elements/1960154/download -O gpio_alt.c
+gcc -o gpio_alt gpio_alt.c
+sudo chown root:root gpio_alt
+sudo chmod u+s gpio_alt
+sudo mv gpio_alt /usr/local/bin/
+echo \"dtoverlay=pwm-2chan,pin=18,func=2,pin2=13,func2=4\" >> /boot/config.txt 
+
+
 rm -f third-stage
 " > third-stage
 chmod +x third-stage
