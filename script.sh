@@ -147,9 +147,13 @@ gcc -o gpio_alt gpio_alt.c
 sudo chown root:root gpio_alt
 sudo chmod u+s gpio_alt
 sudo mv gpio_alt /usr/local/bin/
-echo \"dtoverlay=pwm-2chan,pin=18,func=2,pin2=13,func2=4\" >> /boot/config.txt 
-
-
+wget https://learn.adafruit.com/pages/6577/elements/1960188/download -O /root/pwmaudio.sh
+chmod +x /root/pwmaudio.sh
+wget https://learn.adafruit.com/pages/6577/elements/1960193/download -O pwmaudio.service
+chmod +x pwmaudio.service
+mv pwnaudio.service /lib/systemd/system/pwmaudio.service
+systemctl enable pwmaudio.service
+echo \"\\ndtoverlay=pwm-2chan,pin=18,func=2,pin2=13,func2=4\" >> /boot/config.txt
 rm -f third-stage
 " > third-stage
 chmod +x third-stage
