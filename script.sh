@@ -151,7 +151,7 @@ wget https://learn.adafruit.com/pages/6577/elements/1960188/download -O /root/pw
 chmod +x /root/pwmaudio.sh
 wget https://learn.adafruit.com/pages/6577/elements/1960193/download -O pwmaudio.service
 chmod +x pwmaudio.service
-mv pwnaudio.service /lib/systemd/system/pwmaudio.service
+mv pwmaudio.service /lib/systemd/system/pwmaudio.service
 systemctl enable pwmaudio.service
 echo \"\\ndtoverlay=pwm-2chan,pin=18,func=2,pin2=13,func2=4\" >> /boot/config.txt
 rm -f third-stage
