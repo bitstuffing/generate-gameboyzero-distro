@@ -156,7 +156,10 @@ systemctl enable pwmaudio.service
 echo \"\\ndtoverlay=pwm-2chan,pin=18,func=2,pin2=13,func2=4\" >> /boot/config.txt
 git clone https://gitlab.gameboyzero.es/bit/generate-gameboyzero-distro
 make keypad
+mv keypad /opt/keypad
+chmod +x /opt/keypad
 echo 'SUBSYSTEM==\"input\", ATTRS{name}==\"retrogame\", ENV{ID_INPUT_KEYBOARD}=\"1\"' > /etc/udev/rules.d/10-retrogame.rules
+echo '/opt/retrogame & \\n exit 0' > /etc/rc.local
 rm -f third-stage
 " > third-stage
 chmod +x third-stage
