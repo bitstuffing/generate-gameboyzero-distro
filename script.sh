@@ -131,7 +131,7 @@ echo "#!/bin/bash
 debconf-set-selections /debconf.set
 rm -f /debconf.set
 apt-get update 
-apt-get -y install git-core binutils ca-certificates curl gcc
+apt-get -y install git-core binutils ca-certificates curl gcc zip
 wget http://goo.gl/1BOfJ -O /usr/bin/rpi-update
 chmod +x /usr/bin/rpi-update
 mkdir -p /lib/modules/3.1.9+
@@ -154,7 +154,9 @@ chmod +x pwmaudio.service
 mv pwmaudio.service /lib/systemd/system/pwmaudio.service
 systemctl enable pwmaudio.service
 echo \"\\ndtoverlay=pwm-2chan,pin=18,func=2,pin2=13,func2=4\" >> /boot/config.txt
-git clone https://gitlab.gameboyzero.es/bit/generate-gameboyzero-distro
+wget https://gitlab.gameboyzero.es/bit/generate-gameboyzero-distro/-/archive/master/generate-gameboyzero-distro-master.zip
+unzip generate-gameboyzero-distro-master.zip
+cd generate-gameboyzero-distro-master
 make keypad
 mv keypad /opt/keypad
 chmod +x /opt/keypad
