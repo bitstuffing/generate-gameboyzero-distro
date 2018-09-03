@@ -159,7 +159,7 @@ make keypad
 mv keypad /opt/keypad
 chmod +x /opt/keypad
 echo 'SUBSYSTEM==\"input\", ATTRS{name}==\"retrogame\", ENV{ID_INPUT_KEYBOARD}=\"1\"' > /etc/udev/rules.d/10-retrogame.rules
-echo '/opt/retrogame & \\n exit 0' > /etc/rc.local
+echo '/opt/keypad & \\n exit 0' > /etc/rc.local
 rm -f third-stage
 " > third-stage
 chmod +x third-stage
