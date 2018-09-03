@@ -17,7 +17,7 @@ device=$1
 buildenv="/home/kelroy/pruebas/rpi"
 rootfs="${buildenv}/rootfs"
 bootfs="${rootfs}/boot"
-archtype="armel"
+archtype="armhf"
 
 mydate=`date +%Y%m%d`
 
