@@ -17,7 +17,7 @@ device=$1
 buildenv="/home/box/pruebas/rpi"
 rootfs="${buildenv}/rootfs"
 bootfs="${rootfs}/boot"
-archtype="armel"
+archtype="armhf"
 
 mydate=`date +%Y%m%d`
 
@@ -131,7 +131,7 @@ echo "#!/bin/bash
 debconf-set-selections /debconf.set
 rm -f /debconf.set
 apt-get update 
-apt-get -y install git-core binutils ca-certificates curl gcc
+apt-get -y install git-core binutils ca-certificates curl gcc zip
 wget http://goo.gl/1BOfJ -O /usr/bin/rpi-update
 chmod +x /usr/bin/rpi-update
 mkdir -p /lib/modules/3.1.9+
@@ -154,12 +154,14 @@ chmod +x pwmaudio.service
 mv pwmaudio.service /lib/systemd/system/pwmaudio.service
 systemctl enable pwmaudio.service
 echo \"\\ndtoverlay=pwm-2chan,pin=18,func=2,pin2=13,func2=4\" >> /boot/config.txt
-git clone https://gitlab.gameboyzero.es/bit/generate-gameboyzero-distro
+wget https://gitlab.gameboyzero.es/bit/generate-gameboyzero-distro/-/archive/master/generate-gameboyzero-distro-master.zip
+unzip generate-gameboyzero-distro-master.zip
+cd generate-gameboyzero-distro-master
 make keypad
 mv keypad /opt/keypad
 chmod +x /opt/keypad
 echo 'SUBSYSTEM==\"input\", ATTRS{name}==\"retrogame\", ENV{ID_INPUT_KEYBOARD}=\"1\"' > /etc/udev/rules.d/10-retrogame.rules
-echo '/opt/retrogame & \\n exit 0' > /etc/rc.local
+echo '/opt/keypad & \\n exit 0' > /etc/rc.local
 rm -f third-stage
 " > third-stage
 chmod +x third-stage
