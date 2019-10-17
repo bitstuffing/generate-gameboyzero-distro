@@ -14,7 +14,7 @@ bootsize="64M"
 deb_release="stretch"
 
 device=$1
-buildenv="/home/kelroy/pruebas/rpi"
+buildenv="/home/box/pruebas/rpi"
 rootfs="${buildenv}/rootfs"
 bootfs="${rootfs}/boot"
 archtype="armel"
